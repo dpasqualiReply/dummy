@@ -1,11 +1,11 @@
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.{SparkConf, SparkContext}
 
 object Dummy {
 
   def main(args: Array[String]): Unit = {
 
-    val spark = SparkSession.builder().appName("dummy").master("local[*]").getOrCreate()
-    val sc = spark.sparkContext
+    val conf = new SparkConf().setMaster("local[*]").setAppName("dummy")
+    val sc = new SparkContext(conf)
 
     val arr = sc.parallelize(Array(1,2,3,4,5,6,7))
 
